@@ -1,19 +1,23 @@
 const express = require('express');
 const connectDB = require('./config/db');
-
-const users = require('./routes/api/users');
-const profile = require('./routes/api/profile');
-const posts = require('./routes/api/posts');
+const path = require('path');
 
 const app = express();
+
+// Connect MongoDB
 connectDB();
+
+// Initialize middleware
+app.use(express.json({ extended: false }));
+
 app.get('/', (request, response) => response.send('API running...'));
 
-// Use Routes
-app.use('/api/users', users);
-app.use('/api/profile', profile);
-app.use('/api/posts', posts);
+// Define Routes
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/profile', require('./routes/api/profile'));
+app.use('/api/posts', require('./routes/api/posts'));
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5055;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
