@@ -1,17 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
-
-// const { check, valicationResult } = require('express-validator/check);
+const { check, validationResult } = require('express-validator/check');
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// const keys = require('../../config/keys');
-const passport = require('passport');
-
-// // Load Input Validation
-const validateRegisterInput = require('../../validation/register');
-const validateLoginInput = require('../../validation/login');
+const config = require('config');
 
 // Load User model
 const User = require('../../models/User');
@@ -27,7 +21,7 @@ router.get('/test', (request, response) =>
 // @desc    Register user
 // @access  Public
 router.post('/register', (request, response) => {
-  const { errors, isValid } = validateRegisterInput(request.body);
+  const { errors, isValid } = validationResult(request.body);
 
   // Check Validation
   if (!isValid) {
@@ -71,7 +65,7 @@ router.post('/register', (request, response) => {
 // @desc    Login User / Returning JWT Token
 // @access  Public
 router.post('/login', (request, response) => {
-  const { errors, isValid } = validateLoginInput(request.body);
+  const { errors, isValid } = validationResult(request.body);
 
   // Check Validation
   if (!isValid) {
