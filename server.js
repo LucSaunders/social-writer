@@ -7,7 +7,7 @@ const app = express();
 // Connect MongoDB
 connectDB();
 
-// Initialize middleware
+// Initialize middleware (BodyParser included in Express)
 app.use(express.json({ extended: false }));
 
 app.get('/', (request, response) => response.send('API running...'));
