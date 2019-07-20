@@ -205,7 +205,7 @@ router.post(
         description: request.body.description
       };
 
-      // Add to exp array
+      // Add to experience array
       profile.experience.unshift(newExp);
 
       profile.save().then(profile => response.json(profile));
