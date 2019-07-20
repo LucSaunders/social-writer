@@ -27,7 +27,10 @@ router.get('/', auth, async (request, response) => {
 router.post(
   '/',
   [
+    // .isEmail() from express-validator documentation
     check('email', 'Please include a valid email').isEmail(),
+
+    // .isLength() from express-validator documentation
     check('password', 'Password is required').exists()
   ],
   async (request, response) => {
@@ -64,7 +67,7 @@ router.post(
       jwt.sign(
         payload,
         config.get('jwtSecret'),
-        { expiresIn: 360000 },
+        { expiresIn: 3600 },
         (error, token) => {
           if (error) throw error;
           response.json({ token });
