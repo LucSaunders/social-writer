@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Create Schema
+// Create Profile Schema
 const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
