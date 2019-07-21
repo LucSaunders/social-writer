@@ -16,9 +16,6 @@ const ProfileSchema = new mongoose.Schema({
     type: [String],
     required: true
   },
-  skills: {
-    type: [String]
-  },
   bio: {
     type: String
   },
@@ -28,14 +25,21 @@ const ProfileSchema = new mongoose.Schema({
   agent: {
     type: String
   },
+  specialties: {
+    type: [String]
+  },
+  influences: {
+    type: [String]
+  },
   publications: [
     {
       title: {
         type: String,
         required: true
       },
-      publicationMedium: {
-        type: String
+      publisher: {
+        type: String,
+        required: true
       },
       publicationDate: {
         type: Date,
@@ -49,10 +53,12 @@ const ProfileSchema = new mongoose.Schema({
   career: [
     {
       jobTitle: {
-        type: String
+        type: String,
+        required: true
       },
       company: {
-        type: String
+        type: String,
+        required: true
       },
       website: {
         type: String
